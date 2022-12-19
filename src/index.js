@@ -9,7 +9,7 @@ import {
   unstable_HistoryRouter as HistoryRouter,
 } from "react-router-dom";
 
-import HomeTemplate from "./Templates/HomeTemplate";
+import { HomeTemplate } from "./Templates/HomeTemplate";
 import ResponsiveItem from "./HOC/ResponsiveItem";
 import Home from "./Pages/Home/Home";
 import MobileHome from "./Pages/Home/MobileHome";
@@ -25,35 +25,28 @@ export const history = createBrowserHistory();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <>
-    <React.StrictMode>
-      <Provider store={store}>
-        <HistoryRouter history={history}>
-          <Routes>
-            <Route path="" element={<HomeTemplate />}>
-              <Route>
-                <Route
-                  index
-                  element={
-                    <ResponsiveItem
-                      component={Home}
-                      mobileComponent={MobileHome}
-                    />
-                  }
-                ></Route>
-                <Route path="login" element={<Login />}></Route>
-                <Route path="profile" element={<Profile />}></Route>
-                <Route path="search" element={<Search />}></Route>
-                <Route path="register" element={<Register />}></Route>
-                <Route path="cart" element={<Carts />}></Route>
-                <Route path="detail">
-                  <Route path=":id" element={<Detail />}></Route>
-                </Route>
-                <Route path="*" element={<Navigate to="/" />}></Route>
-              </Route>
+    <Provider store={store}>
+      <HistoryRouter history={history}>
+        <Routes>
+          <Route path="" element={<HomeTemplate />}>
+            <Route
+              index
+              element={
+                <ResponsiveItem component={Home} mobileComponent={MobileHome} />
+              }
+            ></Route>
+            <Route path="login" element={<Login />}></Route>
+            <Route path="profile" element={<Profile />}></Route>
+            <Route path="search" element={<Search />}></Route>
+            <Route path="register" element={<Register />}></Route>
+            <Route path="cart" element={<Carts />}></Route>
+            <Route path="detail">
+              <Route path=":id" element={<Detail />}></Route>
             </Route>
-          </Routes>
-        </HistoryRouter>
-      </Provider>
-    </React.StrictMode>
+            <Route path="*" element={<Navigate to="/" />}></Route>
+          </Route>
+        </Routes>
+      </HistoryRouter>
+    </Provider>
   </>
 );

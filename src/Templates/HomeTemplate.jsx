@@ -1,7 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import HeaderHome from "../Components/HeaderHome";
-const HomeTemplate = () => {
+
+export const HomeTemplate = () => {
   return (
     <>
       <HeaderHome />
@@ -13,5 +14,3 @@ const HomeTemplate = () => {
     </>
   );
 };
-
-export default HomeTemplate;
