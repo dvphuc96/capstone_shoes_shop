@@ -19,7 +19,7 @@ import Profile from "./Pages/Profile/Profile";
 import Carts from "./Pages/Carts/Carts";
 import Detail from "./Pages/Detail/Detail";
 import Search from "./Pages/Search/Search";
-import { createBrowserHistory } from "@remix-run/router";
+import { createBrowserHistory } from "history";
 export const history = createBrowserHistory();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
