@@ -79,7 +79,7 @@ const Header = () => {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="collapsibleNavId">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav" style={{fontSize:'20px'}}>
               <li className="nav-item">
                 <NavLink className="nav-link active" to="/" aria-current="page">
                   Home <span className="visually-hidden">(current)</span>
