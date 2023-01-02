@@ -35,13 +35,13 @@ const Home = () => {
             <div className="carousel-item active">
               <div className="carosel-content row">
                 <div className="col-7 text-center">
-                  <img className="pro-1" src='./img/image5.png'  alt="" />
+                  <img className="pro-1" src='./img/image4.png'  alt="" />
                 </div>
                 <div className="col-5  d-flex">
                   <div className="product-desc1">
-                    <h3>name</h3>
-                    <p>decs</p>
-                    <NavLink className="btn btn-buynow buynow1 text-white"to=''>Buy now</NavLink>
+                    <h3>Adidas Ultraboost 4</h3>
+                    <p>The adidas Primeknit upper wraps the foot with a supportive fit that enhances movement. </p>
+                    <NavLink className="btn btn-buynow buynow1 text-white"to={`/detail/7`}>Buy now</NavLink>
                   </div>
                 </div>
               </div>
@@ -53,9 +53,9 @@ const Home = () => {
                 </div>
                 <div className="col-5  d-flex">
                   <div className="product-desc2">
-                    <h3>nsne</h3>
-                    <p>desc</p>
-                    <NavLink className="btn btn-buynow  buynow2 text-white"to=''>Buy now</NavLink>
+                    <h3>Nike Flyknit</h3>
+                    <p>Nike shoe is the rare high-percentage shooter who's also a coach's dream on D. Designed for his unri....</p>
+                    <NavLink className="btn btn-buynow  buynow2 text-white"to={`/detail/13`}>Buy now</NavLink>
                   </div>
                 </div>
               </div>
@@ -67,9 +67,9 @@ const Home = () => {
                 </div>
                 <div className="col-5 d-flex">
                   <div className="product-desc3">
-                    <h3 id="name">name</h3>
-                    <p id="product-description">decs</p>
-                    <NavLink className="btn btn-buynow buynow3 text-white" to=''>Buy now</NavLink>
+                    <h3 id="name">Nike Shox TL</h3>
+                    <p id="product-description">Nike shoe is the rare high-percentage shooter who's also a coach's dream on D. Designed for his unri....</p>
+                    <NavLink className="btn btn-buynow buynow3 text-white"  to={`/detail/15`}>Buy now</NavLink>
                   </div>
                 </div>
               </div>
