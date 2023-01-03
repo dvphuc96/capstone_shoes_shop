@@ -7,6 +7,8 @@ import logo from "../assets/img/logo.png";
 
 const Header = () => {
   const { userLogin } = useSelector((state) => state.userReducer);
+  const {arrCart} = useSelector(state=>state.productReducer)
+
   const renderLoginButton = () => {
     if (userLogin) {
       return (
@@ -52,11 +54,11 @@ const Header = () => {
                 style={{ fontSize: "15px" }}
               >Search</i>
             </NavLink>
-            <NavLink to="/cart">
+            <NavLink to="/cart" className='text-white'>
               <i
                 className="fa fa-cart-plus text-white"
                 style={{ fontSize: "25px" }}
-              ></i>
+              ></i>({arrCart.length})
             </NavLink>
             {renderLoginButton()}
             <NavLink to="/register" className="nav-link text-white">
@@ -79,7 +81,7 @@ const Header = () => {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="collapsibleNavId">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav" style={{fontSize:'20px'}}>
               <li className="nav-item">
                 <NavLink className="nav-link active" to="/" aria-current="page">
                   Home <span className="visually-hidden">(current)</span>

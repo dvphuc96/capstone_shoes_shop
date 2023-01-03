@@ -1,0 +1,82 @@
+
+
+
+.carosel-product {
+    height: 500px;
+    background-image: url("../../img/6.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
+    .carousel-inner {
+        height: 500px;
+        
+        .carousel-item {
+        .carosel-content {
+            img {
+            // width: 821px;
+            // height: 392px;
+            margin-left:5rem;
+            object-fit: cover;
+            }
+            .col-5 {
+            align-items: center;
+            padding-right:10rem;
+            .btn.btn-buynow{ 
+                font-size:24px;
+                font-weight: 300;
+                background-color: #E1B067;
+                width: 150px;
+                height: 50px;
+            
+                border-radius: 0px;}
+
+            }
+            
+            // color: #fff;
+        }
+        }
+    }
+    .carousel-indicators [data-bs-target] {
+        z-index: 5;
+        box-sizing: content-box;
+        flex: 0 1 auto;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        padding: 0;
+        margin-right:10px;
+        margin-left: 10px;
+        text-indent: -999px;
+        cursor: pointer;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, 0.13);
+
+        opacity: .5;
+        transition: opacity .6s ease;
+    }
+    .carousel-indicators [data-bs-target].active {
+        z-index: 5;
+        border: 1px solid black;
+        background-color: #fff;
+    }
+    .carousel-control-next,
+    .carousel-control-prev {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 15%;
+        padding: 0;
+        color: rgb(170, 148, 160);
+        text-align: center;
+        background: 0 0;
+        border: 0;
+        opacity: 0.5;
+        transition: opacity 0.15s ease;
+    }
+
+
+}
