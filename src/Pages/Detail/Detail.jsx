@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
-import { getProductDetailApi } from '../../redux/reducers/productReducer'
+import { getDetailProductApi, getProductApi } from '../../redux/reducers/productReducer'
 
 const Detail = () => {
-  const { productId } = useParams()
-  const dispatch = useDispatch()
+  const { productId } = useParams();
+  const dispatch = useDispatch();
   const { productDetail } = useSelector(state => state.productReducer)
+
   useEffect(() => {
-    const action = getProductDetailApi(productId)
+    const action = getDetailProductApi(productId)
+    console.log(action)
     dispatch(action);
   }, [productId])
   return (
@@ -26,7 +28,7 @@ const Detail = () => {
         <h3 className='mt-2 text-center'>-Realate Product-</h3>
         <div className="row">
           {productDetail?.relatedProducts.map((prod, index) => {
-            return <div className="col-xl-4">
+            return <div className="col-xl-4" key={index}>
               <div className='card mt-3' style={{ height: '650px' }}>
                 <div className='icon position-relative'>
                   <i className='fa fa-heart position-absolute top-0 end-0 right-0 mt-2 mx-2' style={{ fontSize: '20px', color: 'red' }}></i>

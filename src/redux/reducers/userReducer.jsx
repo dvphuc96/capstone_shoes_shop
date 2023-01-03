@@ -1,11 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  saveStoreJson,
   getStoreJson,
   USER_LOGIN,
-  ACCESS_TOKEN,
-  saveStore,
-  https,
 } from "../../util/config";
 
 const initialState = {
