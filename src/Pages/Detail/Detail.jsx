@@ -45,7 +45,7 @@ const Detail = () => {
           <div className="realate-content">
             <div className="realateItem-group row" id="product-list">
               {productDetail?.relatedProducts.map((prod, index) => {
-                return <div className="col-xl-4">
+                return <div className="col-xl-4 col-md-6 mt-sm-3">
                   <ShoeCard prod={prod} key={index} />
                 </div>
 
