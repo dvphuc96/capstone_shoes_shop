@@ -17,11 +17,6 @@ const Home = () => {
   useEffect(() => {
     getAllProductApi();
   }, [])
-
-
-
-
-
   return (
     <div>
       <section className="carosel-product ">
@@ -84,8 +79,7 @@ const Home = () => {
         </div>
       </section>
       <section className="realateProdcut">
-
-        <h1 className=""> -Product Feature- </h1>
+        <h1 className="">-Product Feature-</h1>
         <div className="container">
           <div className="realate-content">
             <div className="realateItem-group row" id="product-list">
