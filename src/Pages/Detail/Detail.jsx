@@ -37,7 +37,7 @@ const Detail = () => {
                   <p>{prod?.description.length > 100 ? prod?.description.substr(0, 100) + '...' : prod?.description}</p>
                 </div>
                 <div className='d-flex'>
-                  <NavLink to={`${PageConstant.detail}/${prod?.id}`} className='btn btn-success w-50' style={{ borderRadius: '0px' }}>Buy now</NavLink>
+                  <NavLink to={`detail/${prod?.id}`} className='btn btn-success w-50' style={{ borderRadius: '0px' }}>Buy now</NavLink>
                   <div className='prod-price text-center bg-secondary w-50 text-dark' style={{ lineHeight: '40px' }}>
                     {prod?.price ? prod.price.toFixed() : 'price'}
                   </div>
