@@ -10,7 +10,7 @@ const ShoeCard = ({ prod, index }) => {
         <p id="name">{prod.name}</p>
         <p id="mota">{prod.description.length > 100 ? prod.description.substr(0, 100) + '...' : prod.description}.</p>
         <div id="buttons" className="row">
-          <NavLink className='col-6 btn btnBuyNow' to={`detail/${prod.id}`}>Buy now</NavLink>
+          <NavLink className='col-6 btn btnBuyNow' to={`/detail/${prod.id}`}>Buy now</NavLink>
           <button className='col-6 btn btnPrice'>{prod.price}$</button>
         </div>
       </div>
