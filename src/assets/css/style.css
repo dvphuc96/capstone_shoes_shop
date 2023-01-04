@@ -1,0 +1,140 @@
+:root {
+  font-family: "Inter", sans-serif;
+}
+
+.container {
+  width: 1280px;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+.carosel-product {
+  height: 500px;
+  /* background-image: url("../../../public/img/6.png");
+  background-repeat: no-repeat;
+  background-position: bottom; */
+}
+.carosel-product .carousel-inner {
+  height: 500px;
+}
+.carosel-product .carousel-inner .carousel-item .carosel-content img {
+  margin-left: 6rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+
+}
+.carosel-product .carousel-inner .carousel-item .carosel-content .col-5 {
+  align-items: center;
+  padding-right: 10rem;
+}
+.carosel-product .carousel-inner .carousel-item .carosel-content .col-5 .btn.btn-buynow {
+  font-size: 24px;
+  font-weight: 300;
+  background-color: #F8B653;
+  width: 150px;
+  height: 50px;
+  border-radius: 0px;
+}
+.carosel-product .carousel-indicators [data-bs-target] {
+  z-index: 5;
+  box-sizing: content-box;
+  flex: 0 1 auto;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  padding: 0;
+  /* margin-right: 10px;
+  margin-left: 10px; */
+  text-indent: -999px;
+  cursor: pointer;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  opacity: 0.5;
+  transition: opacity 0.6s ease;
+}
+.carosel-product .carousel-indicators [data-bs-target].active {
+  z-index: 5;
+  border: 1px solid black;
+  background-color: #fff;
+}
+.carosel-product .carousel-control-next,
+.carosel-product .carousel-control-prev {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 15%; */
+  padding: 0;
+  color: rgb(170, 148, 160);
+  /* color: red; */
+  font-size: 50px;
+  text-align: center;
+  background: 0 0;
+  border: 0;
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+}
+.realateProdcut {
+  padding-top: 100px;
+}
+.realateProdcut h1{
+  background:linear-gradient(180deg, #F21299 0%, #1B02B5 100%);
+  width: 698px;
+  height: 74px;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 68px;
+
+color: #FFFFFF;
+}
+.realateProdcut .container .realate-content .realateItem-group .realateItem {
+  margin-top: 30px;
+}
+
+.realateProdcut .container .realate-content .realateItem-group .realateItem .card {
+  background: #f8f8f8;
+  border: none;
+}
+.realateProdcut .container .realate-content .realateItem-group .realateItem .card img {
+  padding: 30px;
+}
+.realateProdcut .container .realate-content .realateItem-group .realateItem .card .card-body {
+  padding-bottom: 0px;
+}
+.realateProdcut .container .realate-content .realateItem-group .realateItem .card .card-body #id {
+  color: #000;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 29px;
+}
+.realateProdcut .container .realate-content .realateItem-group .realateItem .card .card-body #mota {
+  color: #cbc9c9;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 24px;
+}
+.realateProdcut .container .realate-content .realateItem-group .realateItem .card .card-body #buttons a.btnBuyNow {
+  height: 64px;
+  border-radius: 0px !important;
+  background-color: 
+  #9DE167;
+  color: #000;
+  font-size: 24px;
+  font-weight: 200;
+  line-height: 50px;
+}
+.realateProdcut .container .realate-content .realateItem-group .realateItem .card .card-body #buttons .btnPrice {
+  border-radius: 0px !important;
+  background-color: #deddcc;
+  color: #000;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 50px;
+}
