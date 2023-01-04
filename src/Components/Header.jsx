@@ -11,28 +11,71 @@ const Header = () => {
     if (userLogin) {
       return (
         <>
-          <NavLink to="/profile" className="nav-link mx-3 text-white">
-            Hello ! {userLogin.email}
-          </NavLink>
-          <span
-            className="text-white"
-            style={{ cursor: "pointer", marginRight: "15px" }}
-            onClick={() => {
-              removeStore(ACCESS_TOKEN);
-              removeStore(USER_LOGIN);
-              history.push("/login");
-              window.location.reload();
-            }}
-          >
-            Logout
-          </span>
+          <ul className="nav navbar-nav nav-flex-icons mx-3 flex-row">
+            <li className="nav-item dropdown">
+              <NavLink
+                className="nav-link dropdown-toggle d-flex align-items-center"
+                type="button"
+                id="userDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src="https://0.gravatar.com/avatar/9a1ec6a90c683643fb9baac32d3a4263?s=32&d=mm&r=g&s=24"
+                  className="avatar avatar-24 photo rounded-circle"
+                />
+              </NavLink>
+              <ul
+                className="dropdown-menu dropdown-menu-end p-2"
+                aria-labelledby="userDropdown"
+                data-dropdown-in="fadeIn"
+                data-dropdown-out="fadeOut"
+                style={{
+                  position: "absolute",
+                  inset: "0px auto auto 0px",
+                  margin: 0,
+                  transform: "translate3d(-93.5px, 42px, 0px)",
+                }}
+                data-popper-placement="bottom-start"
+                data-mdb-popper="null"
+              >
+                <li>
+                  <NavLink
+                    className="nav-link text-decoration-none"
+                    to="/profile"
+                  >
+                    Account Settings
+                  </NavLink>
+                </li>
+                <hr className="m-0" />
+                <li>
+                  <NavLink
+                    className="nav-link text-decoration-none"
+                    onClick={() => {
+                      removeStore(ACCESS_TOKEN);
+                      removeStore(USER_LOGIN);
+                      history.push("/login");
+                      window.location.reload();
+                    }}
+                  >
+                    Logout
+                  </NavLink>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </>
       );
     }
     return (
-      <NavLink to="/login" className="nav-link mx-3 text-white">
-        Login
-      </NavLink>
+      <>
+        <NavLink to="/login" className="nav-link mx-3 text-white">
+          Login
+        </NavLink>
+        <NavLink to="/register" className="nav-link text-white">
+          Register
+        </NavLink>
+      </>
     );
   };
   return (
@@ -45,12 +88,14 @@ const Header = () => {
           >
             <img src={logo} alt="logo" />
           </NavLink>
-          <form className="col-12 col-lg-auto mb-3 mb-lg-0 d-flex">
+          <form className="col-12 col-lg-auto mb-3 mb-lg-0 d-flex align-items-center">
             <NavLink to="/search" className="mx-3">
               <i
                 className="fa fa-search text-white text-sm-start"
                 style={{ fontSize: "15px" }}
-              >Search</i>
+              >
+                Search
+              </i>
             </NavLink>
             <NavLink to="/cart">
               <i
@@ -59,9 +104,6 @@ const Header = () => {
               ></i>
             </NavLink>
             {renderLoginButton()}
-            <NavLink to="/register" className="nav-link text-white">
-              Register
-            </NavLink>
           </form>
         </div>
       </header>
