@@ -40,9 +40,7 @@ root.render(
             <Route path="search" element={<Search />}></Route>
             <Route path="register" element={<Register />}></Route>
             <Route path="cart" element={<Carts />}></Route>
-            <Route path="detail">
-              <Route path=":id" element={<Detail />}></Route>
-            </Route>
+            <Route path="detail/:id" element={<Detail />}></Route>
             <Route path="*" element={<Navigate to="/" />}></Route>
           </Route>
         </Routes>
