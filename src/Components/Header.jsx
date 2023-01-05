@@ -2,12 +2,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { history } from "../index";
-import { removeStore, USER_LOGIN, ACCESS_TOKEN } from "../util/config";
+import { removeStore, USER_LOGIN, ACCESS_TOKEN, USER_PROFILE } from "../util/config";
 import logo from "../assets/img/logo.png";
 
 const Header = () => {
   const { userLogin } = useSelector((state) => state.userReducer);
-  const {arrCart} = useSelector(state=>state.productReducer)
+  const { arrCart } = useSelector(state => state.productReducer)
 
   const renderLoginButton = () => {
     if (userLogin) {
@@ -56,6 +56,7 @@ const Header = () => {
                     onClick={() => {
                       removeStore(ACCESS_TOKEN);
                       removeStore(USER_LOGIN);
+                      removeStore(USER_PROFILE);
                       history.push("/login");
                       window.location.reload();
                     }}
@@ -123,7 +124,7 @@ const Header = () => {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="collapsibleNavId">
-            <ul className="navbar-nav" style={{fontSize:'20px'}}>
+            <ul className="navbar-nav" style={{ fontSize: '20px' }}>
               <li className="nav-item">
                 <NavLink className="nav-link active" to="/" aria-current="page">
                   Home <span className="visually-hidden">(current)</span>
