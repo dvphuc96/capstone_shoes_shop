@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { message } from "antd";
 import { history } from "../../index";
 import {
   ACCESS_TOKEN,
@@ -7,11 +8,12 @@ import {
   saveStore,
   saveStoreJson,
   USER_LOGIN,
+  USER_PROFILE,
 } from "../../util/config";
 
 const initialState = {
   userLogin: getStoreJson(USER_LOGIN),
-  userProfile: null,
+  userProfile: getStoreJson(USER_PROFILE),
 };
 
 const userReducer = createSlice({
@@ -24,10 +26,16 @@ const userReducer = createSlice({
     getProfileAction: (state, action) => {
       state.userProfile = action.payload;
     },
+    editProfileAction: (state, action) => {
+      state = action.payload
+    },
+    deleProfileAction: (state, action) => {
+      state = action.payload
+    }
   },
 });
 
-export const { getUserLoginAction, getProfileAction } = userReducer.actions;
+export const { getUserLoginAction, getProfileAction, editProfileAction, deleProfileAction } = userReducer.actions;
 
 export default userReducer.reducer;
 
@@ -40,7 +48,7 @@ export const loginApi = (userLogin) => {
     dispatch(action);
     saveStore(ACCESS_TOKEN, result.data.content.accessToken);
     saveStoreJson(USER_LOGIN, result.data.content);
-    const actionProfile = getProfileAction();
+    const actionProfile = getProfileApi();
     dispatch(actionProfile);
     history.push("/");
   };
@@ -52,8 +60,39 @@ export const getProfileApi = () => {
     // cập nhật cho reducer
     const action = getProfileAction(result.data.content);
     dispatch(action);
+    console.log(result.data.content)
+    saveStoreJson(USER_PROFILE, result.data.content)
   };
 };
+
+export const editProfileApi = (editProfile) => {
+  return async dispatch => {
+    await https.post('/api/Users/updateProfile', editProfile).then((res) => {
+      const action = editProfileAction(res.data.content);
+      dispatch(action);
+      message.success("Update success");
+    }).catch((err) => {
+      message.error(`${err.response.data.content}`);
+      return;
+    })
+  }
+};
+
+
+export const deleteIdProductApi = (id) => {
+  return async dispatch => {
+    await https.post('/api/Users/deleteOrder', id).then((res) => {
+      const action = deleProfileAction();
+      dispatch(action);
+      const getProfileAction = getProfileApi()
+      dispatch(getProfileAction)
+      message.success("Delte Succses");
+    }).catch((err) => {
+      message.error(`${err.response.data.content}`);
+      return;
+    })
+  }
+}
 
 export const loginFacebookApi = (facebookToken) => {
   return async (dispatch) => {
