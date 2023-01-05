@@ -1,0 +1,24 @@
+@mixin text($fz, $fw, $cl) {
+    font-size: $fz;
+    font-weight: $fw;
+    color: $cl;
+}
+
+$text-c1-grey: rgba(0, 0, 0, 0.6);
+
+.search {
+    span.title {
+        @include text(18px, 500, $text-c1-grey);
+        line-height: 24px;
+    }
+
+    .ant-input-affix-wrapper {
+        background: rgba(33, 33, 33, 0.08) !important;
+        border-radius: 4px 4px 0px 0px !important;
+    }
+
+    input {
+        background: rgba(33, 33, 33, -0.92) !important;
+        border-radius: 4px 4px 0px 0px !important;
+    }
+}
