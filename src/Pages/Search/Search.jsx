@@ -1,10 +1,16 @@
 import { Input } from 'antd'
 import '../../assets/css/pages/search.scss'
 import React from 'react'
+import { getListProductSearchApi } from '../../redux/reducers/productReducer'
+import { useDispatch, useSelector } from 'react-redux'
+import ShoeCard from '../../Components/ShoeCart/ShoeCard'
 
 const Search = () => {
+  const dispatch = useDispatch()
+  const { keyword } = useSelector(state => state.productReducer)
   const onSearch = (value) => {
-    console.log(value)
+    const getListProductSearch = getListProductSearchApi(value)
+    dispatch(getListProductSearch)
   }
   return (
     <>
@@ -22,6 +28,15 @@ const Search = () => {
       </div>
       <div className="title-component my-3">
         <h1>Search result</h1>
+      </div>
+      <div className='contaier'>
+        <div className='row'>
+          {keyword?.map((prod, index) => {
+            return <div className='col-xl-4 mt-2'>
+              <ShoeCard prod={prod} index={index} />
+            </div>
+          })}
+        </div>
       </div>
     </>
 
