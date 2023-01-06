@@ -1,6 +1,6 @@
 import { Input, Select } from 'antd'
 import '../../assets/css/pages/search.scss'
-import React, { useState } from 'react'
+import React from 'react'
 import { getListProductSearchApi, getListProductSearchByPriceApi } from '../../redux/reducers/productReducer'
 import { useDispatch, useSelector } from 'react-redux'
 import ShoeCard from '../../Components/ShoeCart/ShoeCard'
@@ -48,7 +48,7 @@ const Search = () => {
         </Select>
         <div className='row mt-4'>
           {keyword?.map((prod, index) => {
-            return <div className='col-xl-4 mt-2'>
+            return <div className='col-xl-4 mt-2' key={index}>
               <ShoeCard prod={prod} index={index} />
             </div>
           })}
