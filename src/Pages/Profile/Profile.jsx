@@ -190,8 +190,8 @@ const Profile = () => {
 
               <Form.Item name="gender" label="Gender" hasFeedback >
                 <Select placeholder="Please select gender">
-                  <Select.Option value={false}>Male</Select.Option>
-                  <Select.Option value={true}>Female</Select.Option>
+                  <Select.Option value={true}>Male</Select.Option>
+                  <Select.Option value={false}>Female</Select.Option>
                 </Select>
               </Form.Item>
             </Form>
