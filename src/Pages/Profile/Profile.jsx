@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { USER_PROFILE } from "../../util/config";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { Avatar, Form, Button, Input, Modal, Select, Table, Tag } from 'antd';
@@ -9,6 +9,8 @@ import { getproductfavoriteApi } from "../../redux/reducers/productReducer";
 const Profile = () => {
   const dispatch = useDispatch();
   const { userProfile } = useSelector(state => state.userReducer)
+  const { productsFavorite } = useSelector(state => state.productReducer)
+  const arrayProductFavorite = productsFavorite.productsFavorite
   const arrProduct = userProfile.ordersHistory;
   const [form] = Form.useForm();
   const validateMessages = {
@@ -31,7 +33,7 @@ const Profile = () => {
       width: 250,
       render: (data) => (
         <>
-          {data.map((tag) => {
+          {data?.map((tag) => {
             return (
               <Avatar.Group>
                 <Avatar className="shape-avatar" shape="square" size={80} src={tag.image}></Avatar>
@@ -47,7 +49,7 @@ const Profile = () => {
       dataIndex: 'orderDetail',
       render: (data) => (
         <>
-          {data.map((item) => {
+          {data?.map((item) => {
             return (
               item.name + ' , '
             )
@@ -61,7 +63,7 @@ const Profile = () => {
       dataIndex: 'orderDetail',
       render: (data) => (
         <>
-          {data.map((item) => {
+          {data?.map((item) => {
             return (
               item.price + ' , '
             )
@@ -75,7 +77,7 @@ const Profile = () => {
       dataIndex: 'orderDetail',
       render: (data) => (
         <>
-          {data.map((item) => {
+          {data?.map((item) => {
             return (
               <Tag color="default">{item.quantity}</Tag>
 
@@ -90,7 +92,7 @@ const Profile = () => {
       dataIndex: 'orderDetail',
       render: (data) => (
         <>
-          {data.map((item) => {
+          {data?.map((item) => {
             return (
               `${item.price * item.quantity} ` + ' , '
             )
@@ -113,6 +115,31 @@ const Profile = () => {
           </div>
         </>
       ),
+    },
+  ];
+
+  const columnFavouriteProduct = [
+    {
+      title: 'id',
+      key: 'id',
+      dataIndex: 'id'
+    },
+    {
+      key: 'image',
+      title: 'Image',
+      dataIndex: 'image',
+      render: (data) => (
+        <>
+          <Avatar.Group>
+            <Avatar className="shape-avatar" shape="square" size={80} src={data}></Avatar>
+          </Avatar.Group>
+        </>
+      ),
+    },
+    {
+      key: 'name',
+      title: 'Name',
+      dataIndex: 'name',
     },
   ];
 
@@ -144,10 +171,10 @@ const Profile = () => {
 
   useEffect(() => {
     const getProfile = getProfileApi()
-    dispatch(getproductfavoriteApi())
     if (!USER_PROFILE) {
       dispatch(getProfile)
     }
+    dispatch(getproductfavoriteApi())
     form.setFieldsValue(userProfile)
   }, [])
 
@@ -213,7 +240,7 @@ const Profile = () => {
               </div>
             </div>
             <div className="tab-pane " id="profile" role="tabpanel" aria-labelledby="profile-tab">
-              <Table columns={columns}></Table>
+              <Table columns={columnFavouriteProduct} dataSource={arrayProductFavorite}></Table>
             </div>
           </div>
         </div>
