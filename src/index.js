@@ -29,12 +29,7 @@ root.render(
       <HistoryRouter history={history}>
         <Routes>
           <Route path="" element={<HomeTemplate />}>
-            <Route
-              index
-              element={
-                <ResponsiveItem component={Home} mobileComponent={MobileHome} />
-              }
-            ></Route>
+            <Route index element={<Home />}></Route>
             <Route path="login" element={<Login />}></Route>
             <Route path="profile" element={<Profile />}></Route>
             <Route path="search" element={<Search />}></Route>
