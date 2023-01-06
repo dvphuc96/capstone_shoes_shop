@@ -42,13 +42,14 @@ const productReducer = createSlice({
     getListProductSearchByPriceAction: (state, action) => {
       const FindProductByPrice = state.keyword.filter(arrProduct => arrProduct.price === action.payload)
       state.keyword = FindProductByPrice
+    },
     getproductfavoriteAction: (state, action) => {
       state.productsFavorite = action.payload
     }
-  },
-});
+  }
+})
 
-export const { getAllProductApi, getDetailProductAction, getCartsAction, getNewCartsAction, deleteCartAction,getproductfavoriteAction getListProductSearchAction, getListProductSearchByPriceAction } = productReducer.actions;
+export const { getAllProductApi, getDetailProductAction, getCartsAction, getNewCartsAction, deleteCartAction, getproductfavoriteAction, getListProductSearchAction, getListProductSearchByPriceAction } = productReducer.actions;
 export default productReducer.reducer;
 
 export const getProductApi = () => {
