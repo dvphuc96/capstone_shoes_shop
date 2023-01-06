@@ -5,6 +5,7 @@ import { isExpired } from "react-jwt";
 export const ACCESS_TOKEN = "accessToken";
 export const USER_LOGIN = "userLogin";
 export const USER_PROFILE = "userProfile";
+export const USER_REGISTER = "userRegister";
 
 export const { saveStore, saveStoreJson, getStore, getStoreJson, removeStore } =
 {

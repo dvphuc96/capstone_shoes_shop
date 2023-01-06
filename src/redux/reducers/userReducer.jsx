@@ -9,11 +9,14 @@ import {
   saveStoreJson,
   USER_LOGIN,
   USER_PROFILE,
+  USER_REGISTER,
 } from "../../util/config";
 
 const initialState = {
   userLogin: getStoreJson(USER_LOGIN),
   userProfile: getStoreJson(USER_PROFILE),
+  userRegister: getStoreJson(USER_REGISTER),
+
 };
 
 const userReducer = createSlice({
@@ -22,6 +25,9 @@ const userReducer = createSlice({
   reducers: {
     getUserLoginAction: (state, action) => {
       state.userLogin = action.payload;
+    },
+    getUserRegisterAction: (state, action) => {
+      state.userRegister = action.payload;
     },
     getProfileAction: (state, action) => {
       state.userProfile = action.payload;
@@ -35,7 +41,7 @@ const userReducer = createSlice({
   },
 });
 
-export const { getUserLoginAction, getProfileAction, editProfileAction, deleProfileAction } = userReducer.actions;
+export const { getUserLoginAction, getProfileAction, getUserRegisterAction, editProfileAction, deleProfileAction } = userReducer.actions;
 
 export default userReducer.reducer;
 
@@ -105,5 +111,16 @@ export const loginFacebookApi = (facebookToken) => {
     const actionProfile = getProfileAction();
     dispatch(actionProfile);
     history.push("/");
+  };
+};
+
+export const registerApi = (userRegister) => {
+  return async (dispatch) => {
+    const result = await https.post("/api/Users/signup", userRegister);
+    // cập nhật cho reducer
+    const action = getUserRegisterAction(result.data.content);
+    dispatch(action);
+    alert('Đăng ký tài khoản thành công, mời đăng nhập !');
+    history.push("/login");
   };
 };
