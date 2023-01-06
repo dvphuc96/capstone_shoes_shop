@@ -74,16 +74,16 @@ const Carts = () => {
                         quantity: cart.quantity
                     }
                 })
-                // const userLogin = getStoreJson(USER_LOGIN)
+                const userLogin = getStoreJson(USER_LOGIN)
                 const payload = {
                     orderDetail,
-                    email: 'phuongnga0pn@gmail.com'
+                    email: userLogin.email
                     //doi login roi thay doi cai nay nho userLogin.email
                 }
                 console.log(payload);
                 const result = await https.post('/api/Users/order', payload)
                 if(result){
-                    alert("Pass")
+                    alert("Oder Thanh Cong")
                 }
             }} className='btn' style={{ background: '#F2994A', float: 'right' }}>SUBMIT ORDER</button>
         </div>

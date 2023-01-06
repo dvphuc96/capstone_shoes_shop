@@ -84,7 +84,7 @@ const Home = () => {
           <div className="realate-content">
             <div className="realateItem-group row" id="product-list">
               {arrProduct.map((item, index) => {
-                return <div className="col-4 realateItem" key={index}>
+                return <div className="col-xl-4 col-md-6 mt-sm-3 realateItem" key={index}>
                   <ShoeCard prod={item} />
                 </div>
               })}
