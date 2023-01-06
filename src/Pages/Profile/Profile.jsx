@@ -144,6 +144,7 @@ const Profile = () => {
 
   useEffect(() => {
     const getProfile = getProfileApi()
+    dispatch(getproductfavoriteApi())
     if (!USER_PROFILE) {
       dispatch(getProfile)
     }
