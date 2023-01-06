@@ -8,7 +8,7 @@ import '../../assets/css/pages/profile.scss'
 const Profile = () => {
   const dispatch = useDispatch();
   const { userProfile } = useSelector(state => state.userReducer)
-  const arrProduct = userProfile.ordersHistory;
+  const arrProduct = userProfile?.ordersHistory;
   const [form] = Form.useForm();
   const validateMessages = {
     required: '${label} is required!',
