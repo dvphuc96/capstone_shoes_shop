@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { async } from "q";
 import { https } from "../../util/config";
 
 const initialState = {
@@ -38,6 +37,9 @@ const productReducer = createSlice({
       state.arrCart = newCarts
     },
     getListProductSearchAction: (state, action) => {
+      state.keyword = action.payload
+    },
+    getListProductSearchByPriceAction: (state, action) => {
       state.keyword = action.payload
     }
   },
