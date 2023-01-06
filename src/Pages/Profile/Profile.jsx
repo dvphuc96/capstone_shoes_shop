@@ -178,7 +178,6 @@ const Profile = () => {
     form.setFieldsValue(userProfile)
   }, [])
 
-
   return (
     <>
       <div className="title-component my-5">
