@@ -8,4 +8,4 @@ cd build
 cp index.html 200.html
 
 #4 Deploy
-surge . shoes-shop-app.surge.sh
+npx surge . shoes-shop-app.surge.sh
