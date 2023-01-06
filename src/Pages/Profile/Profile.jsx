@@ -1,14 +1,17 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { USER_PROFILE } from "../../util/config";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { Avatar, Form, Button, Input, Modal, Select, Table, Tag } from 'antd';
 import { deleteIdProductApi, editProfileApi, getProfileApi } from "../../redux/reducers/userReducer";
 import '../../assets/css/pages/profile.scss'
+import { getproductfavoriteApi } from "../../redux/reducers/productReducer";
 const Profile = () => {
   const dispatch = useDispatch();
   const { userProfile } = useSelector(state => state.userReducer)
-  const arrProduct = userProfile?.ordersHistory;
+  const { productsFavorite } = useSelector(state => state.productReducer)
+  const arrayProductFavorite = productsFavorite.productsFavorite
+  const arrProduct = userProfile.ordersHistory;
   const [form] = Form.useForm();
   const validateMessages = {
     required: '${label} is required!',
@@ -30,7 +33,7 @@ const Profile = () => {
       width: 250,
       render: (data) => (
         <>
-          {data.map((tag) => {
+          {data?.map((tag) => {
             return (
               <Avatar.Group>
                 <Avatar className="shape-avatar" shape="square" size={80} src={tag.image}></Avatar>
@@ -46,7 +49,7 @@ const Profile = () => {
       dataIndex: 'orderDetail',
       render: (data) => (
         <>
-          {data.map((item) => {
+          {data?.map((item) => {
             return (
               item.name + ' , '
             )
@@ -60,7 +63,7 @@ const Profile = () => {
       dataIndex: 'orderDetail',
       render: (data) => (
         <>
-          {data.map((item) => {
+          {data?.map((item) => {
             return (
               item.price + ' , '
             )
@@ -74,7 +77,7 @@ const Profile = () => {
       dataIndex: 'orderDetail',
       render: (data) => (
         <>
-          {data.map((item) => {
+          {data?.map((item) => {
             return (
               <Tag color="default">{item.quantity}</Tag>
 
@@ -89,7 +92,7 @@ const Profile = () => {
       dataIndex: 'orderDetail',
       render: (data) => (
         <>
-          {data.map((item) => {
+          {data?.map((item) => {
             return (
               `${item.price * item.quantity} ` + ' , '
             )
@@ -112,6 +115,31 @@ const Profile = () => {
           </div>
         </>
       ),
+    },
+  ];
+
+  const columnFavouriteProduct = [
+    {
+      title: 'id',
+      key: 'id',
+      dataIndex: 'id'
+    },
+    {
+      key: 'image',
+      title: 'Image',
+      dataIndex: 'image',
+      render: (data) => (
+        <>
+          <Avatar.Group>
+            <Avatar className="shape-avatar" shape="square" size={80} src={data}></Avatar>
+          </Avatar.Group>
+        </>
+      ),
+    },
+    {
+      key: 'name',
+      title: 'Name',
+      dataIndex: 'name',
     },
   ];
 
@@ -146,8 +174,10 @@ const Profile = () => {
     if (!USER_PROFILE) {
       dispatch(getProfile)
     }
+    dispatch(getproductfavoriteApi())
     form.setFieldsValue(userProfile)
   }, [])
+
 
   return (
     <>
@@ -196,26 +226,26 @@ const Profile = () => {
           </div>
         </div>
         <hr />
-       <div>
-        <ul className="nav chose nav-tabs" id="myTab" role="tablist">
+        <div>
+          <ul className="nav chose nav-tabs" id="myTab" role="tablist">
             <button className="nav-link active chose-item" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"><h1>Order history</h1></button>
             <button className="nav-link chose-item" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false"><h1>Favourite</h1></button>
-       
-        </ul>
-        <div className="tab-content">
-          <div className="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <div className="product-table">
-              <p className="title-table mb-0">+ Orders have been placed on 09 - 19 - 2020</p>
-              <Table columns={columns} dataSource={arrProduct} />
+
+          </ul>
+          <div className="tab-content">
+            <div className="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+              <div className="product-table">
+                <p className="title-table mb-0">+ Orders have been placed on 09 - 19 - 2020</p>
+                <Table columns={columns} dataSource={arrProduct} />
+              </div>
+            </div>
+            <div className="tab-pane " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+              <Table columns={columnFavouriteProduct} dataSource={arrayProductFavorite}></Table>
             </div>
           </div>
-          <div className="tab-pane " id="profile" role="tabpanel" aria-labelledby="profile-tab"> 
-            <Table columns={columns}></Table>
-          </div>
         </div>
-      </div>
 
-        
+
         {/* <div className="chose d-flex mb-5">
           <button className="chose-item me-3"><h1>Order history</h1></button>
           <button className="chose-item"><h1>Favourite</h1></button>

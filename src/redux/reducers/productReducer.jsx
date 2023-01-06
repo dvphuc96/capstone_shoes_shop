@@ -5,6 +5,7 @@ const initialState = {
   arrProduct: [],
   productDetail: null,
   arrCart: [],
+  productsFavorite: [],
   keyword: [],
 
 }
@@ -41,11 +42,13 @@ const productReducer = createSlice({
     getListProductSearchByPriceAction: (state, action) => {
       const FindProductByPrice = state.keyword.filter(arrProduct => arrProduct.price === action.payload)
       state.keyword = FindProductByPrice
+    getproductfavoriteAction: (state, action) => {
+      state.productsFavorite = action.payload
     }
   },
 });
 
-export const { getAllProductApi, getDetailProductAction, getCartsAction, getNewCartsAction, deleteCartAction, getListProductSearchAction, getListProductSearchByPriceAction } = productReducer.actions;
+export const { getAllProductApi, getDetailProductAction, getCartsAction, getNewCartsAction, deleteCartAction,getproductfavoriteAction getListProductSearchAction, getListProductSearchByPriceAction } = productReducer.actions;
 export default productReducer.reducer;
 
 export const getProductApi = () => {
@@ -84,6 +87,19 @@ export const deleteCart = (id) => {
   return async (dispatch) => {
     const action = deleteCartAction(id)
     dispatch(action)
+  }
+}
+export const getproductfavoriteApi = () => {
+  return async dispatch => {
+    try {
+      const result = await https.get(`/api/Users/getproductfavorite`)
+      const action = getproductfavoriteAction(result.data.content)
+      dispatch(action)
+      console.log(result.data.content)
+    } catch (err) {
+      console.log(err)
+      return;
+    }
   }
 }
 export const getListProductSearchApi = (keyword) => {
