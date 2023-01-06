@@ -4,8 +4,8 @@ import { https } from "../../util/config";
 const initialState = {
   arrProduct: [],
   productDetail: null,
-  arrCart: []
-
+  arrCart: [],
+  productsFavorite: [],
 }
 
 
@@ -31,14 +31,16 @@ const productReducer = createSlice({
       state.arrCart = newCarts
     },
     deleteCartAction: (state, action) => {
-      console.log(action);
       const newCarts = state.arrCart.filter(cart => cart.id !== action.payload)
       state.arrCart = newCarts
+    },
+    getproductfavoriteAction: (state, action) => {
+      state.productsFavorite = action.payload
     }
   },
 });
 
-export const { getAllProductApi, getDetailProductAction, getCartsAction, getNewCartsAction, deleteCartAction } = productReducer.actions;
+export const { getAllProductApi, getDetailProductAction, getCartsAction, getNewCartsAction, deleteCartAction, getproductfavoriteAction } = productReducer.actions;
 export default productReducer.reducer;
 
 export const getProductApi = () => {
@@ -76,5 +78,18 @@ export const deleteCart = (id) => {
   return async (dispatch) => {
     const action = deleteCartAction(id)
     dispatch(action)
+  }
+}
+export const getproductfavoriteApi = () => {
+  return async dispatch => {
+    try {
+      const result = await https.get(`/api/Users/getproductfavorite`)
+      const action = getproductfavoriteAction(result.data.content)
+      dispatch(action)
+      console.log(result.data.content)
+    } catch (err) {
+      console.log(err)
+      return;
+    }
   }
 }
