@@ -4,7 +4,8 @@ import { https } from "../../util/config";
 const initialState = {
   arrProduct: [],
   productDetail: null,
-  arrCart: []
+  arrCart: [],
+  keyword: [],
 
 }
 
@@ -31,14 +32,20 @@ const productReducer = createSlice({
       state.arrCart = newCarts
     },
     deleteCartAction: (state, action) => {
-      console.log(action);
       const newCarts = state.arrCart.filter(cart => cart.id !== action.payload)
       state.arrCart = newCarts
+    },
+    getListProductSearchAction: (state, action) => {
+      state.keyword = action.payload
+    },
+    getListProductSearchByPriceAction: (state, action) => {
+      const FindProductByPrice = state.keyword.filter(arrProduct => arrProduct.price === action.payload)
+      state.keyword = FindProductByPrice
     }
   },
 });
 
-export const { getAllProductApi, getDetailProductAction, getCartsAction, getNewCartsAction, deleteCartAction } = productReducer.actions;
+export const { getAllProductApi, getDetailProductAction, getCartsAction, getNewCartsAction, deleteCartAction, getListProductSearchAction, getListProductSearchByPriceAction } = productReducer.actions;
 export default productReducer.reducer;
 
 export const getProductApi = () => {
@@ -65,6 +72,7 @@ export const addCarts = (cart) => {
     dispatch(action)
   }
 }
+
 export const changeCartQuantity = (id, quantity) => {
   return async (dispatch) => {
     const payload = { id, quantity }
@@ -75,6 +83,20 @@ export const changeCartQuantity = (id, quantity) => {
 export const deleteCart = (id) => {
   return async (dispatch) => {
     const action = deleteCartAction(id)
+    dispatch(action)
+  }
+}
+export const getListProductSearchApi = (keyword) => {
+  return async dispatch => {
+    const result = await https.get(`/api/Product?keyword=${keyword}`)
+    const action = getListProductSearchAction(result.data.content)
+    dispatch(action)
+  }
+}
+
+export const getListProductSearchByPriceApi = (price) => {
+  return async (dispatch) => {
+    const action = getListProductSearchByPriceAction(price)
     dispatch(action)
   }
 }
